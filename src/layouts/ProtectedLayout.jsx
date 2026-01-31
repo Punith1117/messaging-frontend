@@ -1,7 +1,13 @@
+import { Navigate, Outlet } from "react-router-dom"
+import { isTokenExpiredOrInvalid } from "../utils"
+
 const ProtectedLayout = () => {
+    if (isTokenExpiredOrInvalid()) {
+        return <Navigate to="/login" replace />
+    }
+    
     return (
-        // checks for token expiry and redirects to login page
-        <div>ProtectedLayout</div>
+        <Outlet />
     )
 }
 
