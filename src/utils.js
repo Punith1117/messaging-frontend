@@ -12,8 +12,13 @@ const deleteToken = () => {
     localStorage.removeItem(TOKEN)
 }
 
+const containsSpaces = (text) => {
+    return /\s/.test(text)
+}
+
 export {
     setToken,
     getToken,
-    deleteToken
+    deleteToken,
+    containsSpaces
 }
