@@ -46,8 +46,23 @@ const getAvailableMoods = async () => {
     return res.moods
 }
 
+const getUserDetails = async (id) => {
+    let res = await fetch(`${url}/profile/${id}`, {
+        method: 'GET',
+        headers: {
+            authorization: `Bearer ${getToken()}`
+        }
+    })
+    
+    if (res.status === 401 || res.status ==+ 404) return res.status
+    
+    res = await res.json()
+    return res.profile
+}
+
 export {
     saveMyDetails,
     getMyDetails,
-    getAvailableMoods
+    getAvailableMoods,
+    getUserDetails
 }
