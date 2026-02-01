@@ -1,24 +1,26 @@
 import { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { searchUser } from "../api/searchQueries"
+import useDebounce from "../hooks/useDebounce"
 
 const Searchbar = () => {
     const [text, setText] = useState('')
     const [result, setResult] = useState([])
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
+    const debouncedText = useDebounce(text);
 
     const handleSearch = async () => {
-        if (text === '') {
+        if (debouncedText === '') {
             if (loading) setLoading(false)
             return
         }
-        if (text.trim() === '') {
+        if (debouncedText.trim() === '') {
             setResult([])
             return
         }
         setLoading(true)
-        let res = await searchUser(text.trim())
+        let res = await searchUser(debouncedText.trim())
         setLoading(false)
         if (res === 401) {
             navigate('/login', {replace: true})
@@ -35,7 +37,7 @@ const Searchbar = () => {
 
     useEffect(() => {
         handleSearch()
-    }, [text])
+    }, [debouncedText])
 
     return (
         <div>
