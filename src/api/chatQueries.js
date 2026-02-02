@@ -41,7 +41,26 @@ const sendMessage = async (toId, content) => {
     }
 }
 
+const setStatus = async (otherUserId, newStatus) => {
+    let res
+    try {
+        res = await fetch(`${url}/chat/${otherUserId}/${newStatus}`, {
+            method: 'POST',
+            headers: {
+                "authorization": `Bearer ${getToken()}`
+            }
+        })
+        if (!res.ok) {
+            console.log("Error: " + res.status)
+            return
+        }   
+    } catch (e) {
+        console.error(e)
+    }
+}
+
 export {
     getAllChats,
-    sendMessage
+    sendMessage,
+    setStatus
 }
