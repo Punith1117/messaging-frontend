@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import getAllChats from "../api/chatQueries"
+import { getAllChats } from "../api/chatQueries"
 
 const ChatList = () => {
     const [chats, setChats] = useState([])

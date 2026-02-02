@@ -1,7 +1,9 @@
 import { getToken } from "../utils"
 
+const url = 'http://localhost:3000'
+
 const getAllChats = async () => {
-    let res = await fetch('http://localhost:3000/chat', {
+    let res = await fetch(`${url}/chat`, {
         method: 'GET',
         headers: {
             authorization: `Bearer ${getToken()}`
@@ -14,4 +16,6 @@ const getAllChats = async () => {
     return res.chats
 }
 
-export default getAllChats
+export {
+    getAllChats
+}
