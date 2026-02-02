@@ -59,8 +59,40 @@ const setStatus = async (otherUserId, newStatus) => {
     }
 }
 
+const getMessages = async (userId, cursor) => {
+    let res
+    const limit = 15
+    try {
+        let finalUrl
+
+        if (cursor === null || cursor === undefined) {
+            finalUrl = `${url}/message/${userId}?limit=${limit}`
+        } else {
+            finalUrl = `${url}/message/${userId}?limit=${limit}&cursor=${cursor}`
+        }
+
+        res = await fetch(finalUrl, {
+            method: 'GET',
+            headers: {
+                authorization: `Bearer ${getToken()}`
+            }
+        })
+        if (!res.ok) {
+            return {
+                status: res.status
+            }
+        }
+        res = await res.json()
+        return res
+    } catch (e) {
+        console.error(e)
+        return {status: 500} // server error 
+    }
+}
+
 export {
     getAllChats,
     sendMessage,
-    setStatus
+    setStatus,
+    getMessages
 }
