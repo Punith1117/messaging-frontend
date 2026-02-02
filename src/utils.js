@@ -36,10 +36,24 @@ const isTokenExpiredOrInvalid = () => {
     }
 }
 
+const getUserIdFromToken = () => {
+    const token = getToken()
+
+    if (!token) return null // invalid
+
+    try {
+        const {id} = jwtDecode(token)
+        return id
+    } catch (e) {
+        return null // invalid
+    }  
+}
+
 export {
     setToken,
     getToken,
     deleteToken,
     containsSpaces,
-    isTokenExpiredOrInvalid
+    isTokenExpiredOrInvalid,
+    getUserIdFromToken
 }
