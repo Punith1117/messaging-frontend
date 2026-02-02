@@ -5,9 +5,13 @@ const SendMessage = ({
     statusUpdatedBy,
     handleSend,
     handleStatusChange,
-    loggedInUserId
+    loggedInUserId,
+    loading
 }) => {
     const [message, setMessage] = useState('')
+    
+    if (loading && !status)
+        return <div>Loading...</div>
 
     if (status === 404 || status === 'accepted') {
         return (
