@@ -3,7 +3,12 @@ import AppDetails from "../components/AppDetails"
 
 const AuthLayout = () => {
     return (
-        <div>
+        <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '100vw'
+        }}>
             <AppDetails />
             <Outlet />
         </div>
