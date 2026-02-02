@@ -1,9 +1,10 @@
 import { Outlet } from "react-router-dom"
+import AppDetails from "../components/AppDetails"
 
 const AuthLayout = () => {
     return (
         <div>
-            <div>AuthLayout</div>
+            <AppDetails />
             <Outlet />
         </div>
     )
