@@ -6,14 +6,17 @@ import Profile from './pages/Profile'
 import AppLayout from './layouts/AppLayout'
 import NotFound from './pages/NotFound'
 import ProtectedLayout from './layouts/ProtectedLayout'
+import AuthLayout from './layouts/AuthLayout'
 
 function AppRoutes() {
   return (
     <BrowserRouter>
 		<Routes>
 			{/* Public routes */}
-			<Route path="/login" element={<Login />} />
-			<Route path="/signup" element={<Signup />} />
+			<Route element={<AuthLayout />}>
+				<Route path="/login" element={<Login />} />
+				<Route path="/signup" element={<Signup />} />
+			</Route>
 
 			{/* Protected routes */}
 			<Route element={<ProtectedLayout />}>
