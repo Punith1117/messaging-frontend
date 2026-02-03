@@ -6,7 +6,6 @@ const UserDetails = () => {
     const { userId } = useParams()
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
-    const [error, setError] = useState(null)
     const navigate = useNavigate()
 
     const fetchUser = async () => {
@@ -22,7 +21,8 @@ const UserDetails = () => {
             }
             setUser(data)
         } catch (err) {
-            setError("Failed to fetch user details")
+            navigate('/login', {replace: true})
+            return                
         } finally {
             setLoading(false)
         }
@@ -33,7 +33,6 @@ const UserDetails = () => {
     }, [userId])
 
     if (loading) return <p>Loading user details...</p>
-    if (error) return <p>{error}</p>
     if (!user) return <p>User not found</p>
 
     return (
