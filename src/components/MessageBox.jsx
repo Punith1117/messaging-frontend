@@ -4,6 +4,7 @@ import SendMessage from "./SendMessage"
 import { useNavigate, useParams } from "react-router-dom"
 import { getUserIdFromToken, isTokenExpiredOrInvalid } from "../utils"
 import { getMessages, sendMessage, setStatus } from "../api/chatQueries"
+import styled from "styled-components"
 
 const MessageBox = () => {
     const [messages, setMessages] = useState(null)
@@ -129,7 +130,7 @@ const MessageBox = () => {
     }, [otherUserId])
 
     return (
-        <div>
+        <Wrapper>
             <Messages
                 handleScroll={handleScroll}
                 messagesRef={messagesRef}
@@ -145,8 +146,13 @@ const MessageBox = () => {
                 loggedInUserId={loggedInUserId}
                 loading={loading}
             />
-        </div>
+        </Wrapper>
     )
 }
 
 export default MessageBox
+
+const Wrapper = styled.div`
+    width: 100%;
+    height: 89%;
+`

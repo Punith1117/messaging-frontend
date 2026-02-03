@@ -1,4 +1,6 @@
 import { useState } from "react"
+import styled from "styled-components"
+import sendIcon from "../assets/send.png"
 
 const SendMessage = ({
     status,
@@ -11,11 +13,16 @@ const SendMessage = ({
     const [message, setMessage] = useState('')
     
     if (loading && !status)
-        return <div>Loading...</div>
+        return <div style={{ 
+            display: 'flex', 
+            justifyContent: 'center', 
+            alignItems: 'center',
+            height: '8%'
+        }}>Loading...</div>
 
     if (status === 404 || status === 'accepted') {
         return (
-            <div>
+            <AcceptedNotFound>
                 <input 
                     type="text" 
                     placeholder={
@@ -30,40 +37,154 @@ const SendMessage = ({
                     if (!message.trim()) return
                     handleSend(message)
                     setMessage('')
-                }}>Send</button>
-                {status === 'accepted' && <button onClick={() => handleStatusChange('blocked')}>Block</button>}
-            </div>
+                }}
+                    className="send"
+                >Send</button>
+                {status === 'accepted' && <button onClick={() => handleStatusChange('blocked')} className="block">Block</button>}
+            </AcceptedNotFound>
         )
     } else if (status === 'blocked') {
         if (loggedInUserId === statusUpdatedBy) {
             return (
-                <div>
+                <Blocked>
                     <button onClick={() => handleStatusChange('accepted')}>Unblock</button>
-                </div>
+                </Blocked>
             )
         } else {
             return (
-                <div>
+                <Blocked>
                     <p>You are blocked</p>
-                </div>
+                </Blocked>
             )
         }
     } else { // 'pending' state
         if (loggedInUserId === statusUpdatedBy) {
             return (
-                <div>
+                <Pending>
                     <p>Chat invitation is yet to be accepted</p>
-                </div>
+                </Pending>
             )
         } else {
             return (
-                <div>
+                <Pending>
                     <button onClick={() => handleStatusChange('accepted')} >Accept</button>
-                    <button onClick={() => handleStatusChange('blocked')} >Reject</button>
-                </div>
+                    <button onClick={() => handleStatusChange('blocked')} className="reject">Reject</button>
+                </Pending>
             )
         }
     }
 }
 
 export default SendMessage
+
+const AcceptedNotFound = styled.div`
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    input {
+        width: 80%;
+        height: 50%;
+        border-radius: 1rem;
+        border: 2px solid #dadada;
+        padding: 5px;
+        font-size: 14px;
+    }
+
+    .send {
+        position: absolute;
+        right: 12%;
+        border: 0;
+        color: transparent;
+        width: 5rem;
+        height: 2rem;
+        border-radius: 4px;
+        
+        background-image: url(${sendIcon});
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+
+        &:hover {
+            cursor: pointer;
+            filter: brightness(0.9);
+        }
+    }
+
+    .block {
+        position: absolute;
+        right: 3px;
+        font-size: 15px;
+        padding: 10px;
+        border-radius: 5px;
+        border: 0;
+        color: white;
+        background-color: #FF706D;
+
+        &:hover {
+            cursor: pointer;
+            filter: brightness(0.8);
+        }
+    }
+`
+
+const Blocked = styled.div`
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(#ffffff13,#FF706D);
+    color: #FF706D;
+    font-size: 30px;
+    font-weight: 600;
+    
+    button {
+        color: white;
+        width: 10%;
+        height: 40%;
+        border-radius: 5px;
+        border: 0;
+        background-color: #2dd117;
+        font-weight: 600;
+        box-shadow: 0px 5px 5px green;
+
+        &:hover {
+            cursor: pointer;
+            filter: brightness(0.8);
+        }
+    }
+`
+
+const Pending = styled.div`
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(#ffffff13,#FFF36D);
+    color: #c4b300;
+    font-size: 30px;
+
+    button {
+        margin: 20px;
+        color: white;
+        width: 10%;
+        height: 40%;
+        border-radius: 5px;
+        border: 0;
+        background-color: #2dd117;
+        font-weight: 600;
+        box-shadow: 0px 5px 5px green;
+
+        &:hover {
+            cursor: pointer;
+            filter: brightness(0.8);
+        }
+    }
+
+    .reject {
+        background-color: #FF706D;
+        box-shadow: 0px 5px 5px #c00300;
+    }
+`
