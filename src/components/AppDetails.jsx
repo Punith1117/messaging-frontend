@@ -57,4 +57,11 @@ const Wrapper = styled.div`
     a {
         color: white;
     }
+
+    @media (max-width: 768px) {
+        width: 100%;
+        height: auto;
+        min-height: 40vh;
+        padding: 1rem;
+    }
 `

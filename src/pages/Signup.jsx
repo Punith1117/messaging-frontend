@@ -155,4 +155,14 @@ const Wrapper = styled.div`
     margin: -10px;
     color: red;
   }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+
+    .content {
+      margin-bottom: -14rem;
+    }
+  }
 `
