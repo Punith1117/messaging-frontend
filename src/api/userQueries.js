@@ -1,6 +1,7 @@
 import { getToken } from "../utils"
 
-const url = 'http://localhost:3000'
+const url = import.meta.env.VITE_BACKEND_URL
+
 const saveMyDetails = async (casualName, mood) => {
     try {
         let res = await fetch(`${url}/profile`, {

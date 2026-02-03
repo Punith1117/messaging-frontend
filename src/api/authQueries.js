@@ -1,5 +1,7 @@
+const url = import.meta.env.VITE_BACKEND_URL
+
 const loginUser = async (username, password) => {
-    let res = await fetch('http://localhost:3000/auth/login', {
+    let res = await fetch(`${url}/auth/login`, {
         method: 'POST',
         headers: {
             "Content-Type": "application/json"
@@ -16,7 +18,7 @@ const loginUser = async (username, password) => {
 }
 
 const signupUser = async (username, password, casualName) => {
-    let res = await fetch('http://localhost:3000/auth/signup', {
+    let res = await fetch(`${url}/auth/signup`, {
         method: 'POST',
         headers: {
             "Content-Type": "application/json"

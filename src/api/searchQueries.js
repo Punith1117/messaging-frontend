@@ -1,7 +1,9 @@
 import { getToken } from "../utils"
 
+const url = import.meta.env.VITE_BACKEND_URL
+
 const searchUser = async (text) => {
-    let res = await fetch(`http://localhost:3000/user?q=${text}`, {
+    let res = await fetch(`${url}/user?q=${text}`, {
         method: 'GET',
         headers: {
             "Authorization": `Bearer ${getToken()}`

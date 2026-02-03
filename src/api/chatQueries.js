@@ -1,6 +1,6 @@
 import { getToken } from "../utils"
 
-const url = 'http://localhost:3000'
+const url = import.meta.env.VITE_BACKEND_URL
 
 const getAllChats = async () => {
     let res = await fetch(`${url}/chat`, {
