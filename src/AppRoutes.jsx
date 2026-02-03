@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Chat from './pages/Chat'
@@ -25,6 +25,8 @@ function AppRoutes() {
 					<Route path="/profile" element={<Profile />} />
 				</Route>
 			</Route>
+
+			<Route path="/" element={<Navigate to="/login" replace />} />
 
 			<Route path='*' element={<NotFound />} />
 		</Routes>
