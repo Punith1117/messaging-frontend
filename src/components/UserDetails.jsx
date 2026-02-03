@@ -72,6 +72,10 @@ const Wrapper = styled.div`
     align-items: center;
     justify-content: space-between;
     padding: 50px;
+
+    @media (max-width: 768px) {
+        height: 3rem;
+    }
 `;
 
 const LeftColumn = styled.div`

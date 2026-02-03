@@ -22,8 +22,15 @@ const Wrapper = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    z-index: 999;
 
     @media (max-width: 1200px) {
         width: 40%;
+    }
+
+    @media (max-width: 768px) {
+        width: 100%;
+        height: auto;
+        min-height: 35vh;
     }
 `

@@ -128,6 +128,13 @@ const AcceptedNotFound = styled.div`
             filter: brightness(0.8);
         }
     }
+
+    @media (max-width: 768px) {
+        height: 5rem;
+        input {
+            width: 100%;
+        }
+    }
 `
 
 const Blocked = styled.div`
@@ -153,6 +160,14 @@ const Blocked = styled.div`
         &:hover {
             cursor: pointer;
             filter: brightness(0.8);
+        }
+    }
+
+    @media (max-width: 768px) {
+        height: 5rem;
+
+        button {
+            width: 40%;
         }
     }
 `
@@ -186,5 +201,13 @@ const Pending = styled.div`
     .reject {
         background-color: #FF706D;
         box-shadow: 0px 5px 5px #c00300;
+    }
+
+    @media (max-width: 768px) {
+        height: 5rem;
+
+        button {
+            width: 30%;
+        }
     }
 `

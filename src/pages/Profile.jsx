@@ -130,6 +130,14 @@ const Wrapper = styled.div`
         width: 60%;
     }
 
+    @media (max-width: 768px) {
+        width: 100%;
+        height: auto;
+        min-height: 65vh;
+        border-left: none;
+        border-top: 1px solid #cacaca;
+    }
+
     .content {
         margin-top: 10rem;
     }
