@@ -60,6 +60,15 @@ This repo contains only the frontend of the project and communicates with a [RES
 
 ---
 
+## 📹 Demo
+
+<p align="center">
+  <img src="./public/readme/profile.png" width="500" />
+</p>
+<p align="center">
+  <img src="./public/readme/pagination.gif" width="500" />
+</p>
+
 ## 🌐 Deployment
 
 * Deployed using **Netlify**
